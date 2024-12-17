@@ -47,12 +47,23 @@ LSRCS = libft/ft_atoi.c \
     libft/ft_lstmap_bonus.c \
     libft/ft_lstsize_bonus.c \
 
-SRCS = 
+SRCS = push_swap.c \
 
+OBJ = $(SRCS:.c=.o)
 LOBJ = $(LSRCS:.c=.o)
+EXE = push.out
 
 $(LIBFT): $(LOBJ)
-	ar -rcs $(LOBJ) -o $(LIBFT)
+	ar -rcs $(LIBFT) $(LOBJ)
+
+$(NAME): $(OBJ)
+	ar -rcs $(NAME) $(OBJ)
+
+run: $(EXE)
+	./push.out 4 2 1 4
+
+$(EXE): $(NAME) $(LIBFT)
+	cc $(CFLAGS) $(NAME) $(LIBFT) -o $(EXE)
 
 all: $(NAME)
 
