@@ -1,15 +1,15 @@
 #include "push_swap.c"
 
-stack  *ft_lstnew_ps(void *content)
+stack  *ft_lstnew_ps(int content)
 {
         stack  *newnode;
 
         newnode = malloc(sizeof(stack));
         if (!newnode)
                 return (NULL);
-        newnode->content = content;
+        newnode->val = content;
         newnode->next = NULL;
-	newnode->prev = NULL;
+        newnode->prev = NULL;
         return (newnode);
 }
 
@@ -29,7 +29,7 @@ void    ft_lstadd_back_ps(stack **lst, stack *new)
                         current = current->next;
                 }
                 current->next = new;
-		new->prev = current;
+        new->prev = current;
         }
 }
 
@@ -41,17 +41,16 @@ void    ft_lstadd_front_ps(stack **lst, stack *new)
         *lst = new;
 }
 
-void    ft_lstclear_ps(stack **lst, void (*del)(void *))
+void    ft_lstclear_ps(stack **lst)
 {
         stack  *temp;
 
-        if (!*lst || !del || !lst)
+        if (!*lst || !lst)
                 return ;
         while (*lst)
         {
                 temp = *lst;
                 (*lst) = (*lst)->next;
-                del(temp->content);
                 free(temp);
         }
 }
@@ -64,4 +63,3 @@ stack  *ft_lstlast_ps(stack *lst)
                 lst = lst->next;
         return (lst);
 }
-

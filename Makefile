@@ -55,13 +55,16 @@ FTP_SRCS = ft_printf/ft_printf.c \
 	   ft_printf/ft_putstr_f.c \
 	   ft_printf/ft_put_us_hex.c \
 
-SRCS = push_swap.c list_utils.c list_utils2.c \
+SRCS = push_swap.c \
+	linked_utils.c \
+	list_utils2.c \
+	parse_argv_to_stack.c \
 
 OBJ = $(SRCS:.c=.o)
 LOBJ = $(LSRCS:.c=.o)
 FTP_OBJ = $(FTP_SRCS:.c=.o)
 
-EXE = push.out
+EXE = a.out
 
 $(LIBFT): $(LOBJ)
 	ar -rcs $(LIBFT) $(LOBJ)
@@ -72,8 +75,10 @@ $(FPRINT): $(FTP_OBJ)
 $(NAME): $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
 
+libs: $(NAME) $(LIBFT) $(FPRINT)
+
 run: $(EXE)
-	./push.out 4 2 1 4
+	./a.out 4 2 1 4
 
 $(EXE): $(NAME) $(LIBFT) $(FPRINT)
 	cc $(CFLAGS) $(NAME) $(FPRINT) $(LIBFT) -o $(EXE)
