@@ -3,6 +3,7 @@
 
 int	main(int argc, char **argv)
 {
+	stack *stack_a;
 	int i;
 							
 	i = 0;
@@ -10,7 +11,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (i);
 	
-	printf("TEST\n");
+	ft_printf("TEST\n");
 	
 
 	return(0);
