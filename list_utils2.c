@@ -1,7 +1,7 @@
 #include "push_swap.c"
 
 
-int     ft_lstsizei_ps(stack *lst)
+int     ft_lstsizei_ps(t_stack *lst)
 {
         int     i;
 

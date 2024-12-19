@@ -1,36 +1,27 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-stack  *ft_lstne_ps(int content)
-{
-        stack  *newnode;
-
-        newnode = malloc(sizeof(stack));
-        if (!newnode)
-                return (NULL);
-        newnode->val = content;
-        newnode->next = NULL;
-        newnode->prev = NULL;
-        return (newnode);
-}
-
 int	main(int argc, char **argv)
 {
-	stack *node;
-	stack *stack_a;
+
+	t_stack *stack_a;
+	t_stack *node;
 	int i;
 							
 	i = 0;
 	if (argc < 2)
-		return (i);
-	stack_a = NULL;
-	if(stack_a == NULL)
-		printf("YEE");
-	node = ft_lstne_ps(12);
-	printf("%d\n", node->val);
-	printf("TEST\n");
-	(void)argv;	
+		return (0);
+	stack_a = parse_argv_to(--argc, ++argv);
+	node = stack_a;
+	while(stack_a)
+	{
+		printf("%d\n", stack_a->val);
+		stack_a = stack_a->next;
+	}
+	ft_lstclear_ps(&node);
 
+
+	
 	return(0);
 
 }

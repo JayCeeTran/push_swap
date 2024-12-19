@@ -1,10 +1,10 @@
-#include "push_swap.c"
+#include "push_swap.h"
 
-stack  *ft_lstnew_ps(int content)
+t_stack  *ft_lstnew_ps(int content)
 {
-        stack  *newnode;
+        t_stack  *newnode;
 
-        newnode = malloc(sizeof(stack));
+        newnode = malloc(sizeof(t_stack));
         if (!newnode)
                 return (NULL);
         newnode->val = content;
@@ -13,9 +13,9 @@ stack  *ft_lstnew_ps(int content)
         return (newnode);
 }
 
-void    ft_lstadd_back_ps(stack **lst, stack *new)
+void    ft_lstadd_back_ps(t_stack **lst, t_stack *new)
 {
-        stack  *current;
+        t_stack  *current;
 
         current = *lst;
         if (*lst == NULL)
@@ -29,11 +29,11 @@ void    ft_lstadd_back_ps(stack **lst, stack *new)
                         current = current->next;
                 }
                 current->next = new;
-        new->prev = current;
+        	new->prev = current;
         }
 }
 
-void    ft_lstadd_front_ps(stack **lst, stack *new)
+void    ft_lstadd_front_ps(t_stack **lst, t_stack *new)
 {
         if (!new)
                 return ;
@@ -41,9 +41,9 @@ void    ft_lstadd_front_ps(stack **lst, stack *new)
         *lst = new;
 }
 
-void    ft_lstclear_ps(stack **lst)
+void    ft_lstclear_ps(t_stack **lst)
 {
-        stack  *temp;
+        t_stack  *temp;
 
         if (!*lst || !lst)
                 return ;
@@ -55,7 +55,7 @@ void    ft_lstclear_ps(stack **lst)
         }
 }
 
-stack  *ft_lstlast_ps(stack *lst)
+t_stack  *ft_lstlast_ps(t_stack *lst)
 {
         if (!lst)
                 return (NULL);
