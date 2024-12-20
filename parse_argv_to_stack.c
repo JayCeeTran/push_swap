@@ -5,7 +5,7 @@ int	validate_argument(char *temp);
 int	check_duplicates(t_stack *stack, t_stack *node);
 
 
-t_stack	*parse_argv_to(int argc, char **argv)
+t_stack	*parse_argv_to_stack(int argc, char **argv)
 {
 	t_stack *stack;
 	int	i;

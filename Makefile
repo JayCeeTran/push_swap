@@ -56,9 +56,11 @@ FTP_SRCS = ft_printf/ft_printf.c \
 	   ft_printf/ft_put_us_hex.c \
 
 SRCS =	push_swap.c \
-	linked_utils.c \
+	list_utils.c \
 	list_utils2.c \
 	parse_argv_to_stack.c \
+	p_operations.c \
+	s_operations.c \
 	exit_functs.c \
 
 OBJ = $(SRCS:.c=.o)
@@ -79,7 +81,7 @@ $(NAME): $(OBJ)
 libs: $(NAME) $(LIBFT) $(FPRINT)
 
 run: $(EXE)
-	./a.out " 6" 2   9  4 "5 3"
+	./a.out 1 2 3
 
 $(EXE): $(NAME) $(LIBFT) $(FPRINT)
 	cc $(CFLAGS) $(NAME) $(FPRINT) $(LIBFT) -o $(EXE)

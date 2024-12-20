@@ -19,10 +19,15 @@ t_stack  *ft_lstnew_ps(int content);
 t_stack  *ft_lstlast_ps(t_stack *lst);
 int     ft_lstsizei_ps(t_stack *lst);
 
-t_stack *parse_argv_to(int argc, char **argv);
+t_stack *parse_argv_to_stack(int argc, char **argv);
 void	freetemp(char **temp);
 
 void	malloc_failed(t_stack *stack, char **temp);
 void	invalid_argument(t_stack *stack, char **temp);
+
+void	swap_a(t_stack **stack);
+void	swap_b(t_stack **stack);
+void	swap_ss(t_stack **stack_a, t_stack **stack_b);
+void    push_a(t_stack **stack_b, t_stack **stack_a);
 
 #endif
