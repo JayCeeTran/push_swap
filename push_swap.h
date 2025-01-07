@@ -28,6 +28,14 @@ void	invalid_argument(t_stack *stack, char **temp);
 void	swap_a(t_stack **stack);
 void	swap_b(t_stack **stack);
 void	swap_ss(t_stack **stack_a, t_stack **stack_b);
-void    push_a(t_stack **stack_b, t_stack **stack_a);
+void    push_a(t_stack **stack_a, t_stack **stack_b);
+void    push_b(t_stack **stack_b, t_stack **stack_a);
+void	rr_a(t_stack **stack);
+void	rr_b(t_stack **stack);
+void	rr_rr(t_stack **stack_a, t_stack **stack_b);
+void	rotate_a(t_stack **stack);
+void	rotate_b(t_stack **stack);
+void	rotate_rr(t_stack **stack_a, t_stack **stack_b);
+
 
 #endif

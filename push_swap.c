@@ -12,7 +12,7 @@ int	main(int argc, char **argv)
 							
 	i = 0;
 	if (argc < 2)
-		return (0);
+		return (i);
 	stack_b = parse_argv_to_stack(argc - 1, argv + 1);
 	stack_a = parse_argv_to_stack(argc - 1, argv + 1);
 	node = stack_a;
@@ -23,18 +23,20 @@ int	main(int argc, char **argv)
 		stack_a = stack_a->next;
 		stack_b = stack_b->next;
 	}
-	push_a(&node, &nodeb);
+	rr_b(&nodeb);
+	rotate_a(&node);
+	rotate_rr(&nodeb, &node);
+	rotate_a(&nodeb);
 	printf("SEPERATE\n");
-	while(node)
+	while(nodeb)
 	{
-		printf("prev:%p		node: %p	\n", node->prev, node);
-		printf("stack_a:%d	stack_b:%d\n", node->val, nodeb->val);
-		nodeb = nodeb->next;
+		printf("prev:%p		node: %p	next:%p\n", nodeb->prev, nodeb, nodeb->next);
+		printf("stack_a:%d stack_b %d\n", nodeb->val, node->val);
 		node = node->next;
-	}
-
-
-	
+		nodeb = nodeb->next;
+		printf("Teeest");
+		printf("its getting weird\n");
+	}	
 	return(0);
 
 }
