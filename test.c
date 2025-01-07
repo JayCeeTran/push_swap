@@ -24,11 +24,13 @@ int     main(int argc, char **argv)
                 stack_b = stack_b->next;
         }
         swap_ss(&node, &nodeb);
+	update_index(node);
         printf("SEPERATE\n");
+	printf("lsize: %d\n", node->lsize);
         while(node)
         {
-                printf("prev:%p         node: %p        \n", node->prev, node);
-                printf("stack_a:%d      stack_b:%d\n", node->val, nodeb->val);
+                printf("prev:%p         node: %p        index: %d\n", node->prev, node, node->index);
+                printf("stack_a:%d      stack_b:%d	index: %d\n", node->val, nodeb->val, node->index);
                 nodeb = nodeb->next;
                 node = node->next;
 	}

@@ -63,6 +63,7 @@ SRCS =	exit_functs.c \
 	p_and_rr_operations.c \
 	r_operations.c \
 	s_operations.c \
+	stack_functions.c \
 	
 OBJ = $(SRCS:.c=.o)
 LOBJ = $(LSRCS:.c=.o)
@@ -87,8 +88,8 @@ libs: $(NAME) $(LIBFT) $(FPRINT)
 run: $(EXE) 
 	./a.out 1 2 3
 
-$(EXE): $(NAME) $(LIBFT) $(FPRINT) push_swap.c
-	cc $(CFLAGS) push_swap.c $(NAME) $(FPRINT) $(LIBFT) -o $(EXE)
+$(EXE): $(NAME) $(LIBFT) $(FPRINT) test.c
+	cc $(CFLAGS) test.c $(NAME) $(FPRINT) $(LIBFT) -o $(EXE)
 
 all: $(NAME)
 

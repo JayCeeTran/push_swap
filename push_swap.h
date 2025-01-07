@@ -8,6 +8,9 @@
 
 typedef struct s_stack{
 	int val;
+	int moves;
+	int index;
+	int lsize;
 	struct s_stack *next;
 	struct s_stack *prev;
 } t_stack;
@@ -21,7 +24,6 @@ int     ft_lstsizei_ps(t_stack *lst);
 
 t_stack *parse_argv_to_stack(int argc, char **argv);
 void	freetemp(char **temp);
-
 void	malloc_failed(t_stack *stack, char **temp);
 void	invalid_argument(t_stack *stack, char **temp);
 
@@ -37,5 +39,8 @@ void	rotate_a(t_stack **stack);
 void	rotate_b(t_stack **stack);
 void	rotate_rr(t_stack **stack_a, t_stack **stack_b);
 
+int	stack_in_order(t_stack *stack_a);
+int	stack_in_rorder(t_stack *stack_a);
+void	update_index(t_stack *stack);
 
 #endif
