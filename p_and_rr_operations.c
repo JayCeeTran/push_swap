@@ -15,6 +15,7 @@ void	push_a(t_stack **stack_a, t_stack **stack_b)
 		(*stack_a)->prev = b_first;
 	(*stack_a) = b_first;
 	(*stack_a)->prev = NULL;
+	ft_printf("pa\n");
 }
 
 void	push_b(t_stack **stack_b, t_stack **stack_a)
@@ -32,9 +33,10 @@ void	push_b(t_stack **stack_b, t_stack **stack_a)
 		(*stack_b)->prev = a_first;
 	(*stack_b) = a_first;
 	(*stack_b)->prev = NULL;
+	ft_printf("pb\n");
 }
 
-void	rr_a(t_stack **stack)
+void	rr_a(t_stack **stack, int print)
 {
 	t_stack *first;
 	
@@ -47,9 +49,11 @@ void	rr_a(t_stack **stack)
 	(*stack)->next = first;
 	(*stack)->prev = NULL;
 	first->prev = (*stack);
+	if(print)
+		ft_printf("rra\n");
 }
 
-void	rr_b(t_stack **stack)
+void	rr_b(t_stack **stack, int print)
 {
 	t_stack *first;
 	
@@ -62,6 +66,8 @@ void	rr_b(t_stack **stack)
 	(*stack)->next = first;
 	(*stack)->prev = NULL;
 	first->prev = (*stack);
+	if(print)
+		ft_printf("rrb\n");
 }
 
 void	rr_rr(t_stack **stack_a, t_stack **stack_b)
@@ -70,6 +76,7 @@ void	rr_rr(t_stack **stack_a, t_stack **stack_b)
 		return ;
 	if (!(*stack_a)->next || !(*stack_b)->next)
 		return ;
-	rr_a(stack_a);
-	rr_b(stack_b);
+	rr_a(stack_a, 0);
+	rr_b(stack_b, 0);
+	ft_printf("rrr\n");
 }

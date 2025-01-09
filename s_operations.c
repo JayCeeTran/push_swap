@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	swap_a(t_stack **stack)
+void	swap_a(t_stack **stack, int print)
 {
 	t_stack *first;
 	t_stack *second;
@@ -16,10 +16,11 @@ void	swap_a(t_stack **stack)
 	second->next = first;
 	second->prev = NULL;
 	*stack = second;
-	ft_printf("sa\n");
+	if(print)
+		ft_printf("sa\n");
 }
 
-void	swap_b(t_stack **stack)
+void	swap_b(t_stack **stack, int print)
 {
 	t_stack *first;
 	t_stack *second;
@@ -35,7 +36,8 @@ void	swap_b(t_stack **stack)
 	second->next = first;
 	second->prev = NULL;
 	*stack = second;
-	ft_printf("sb\n");
+	if(print)
+		ft_printf("sb\n");
 }
 
 void	swap_ss(t_stack **stack_a, t_stack **stack_b)
@@ -44,7 +46,7 @@ void	swap_ss(t_stack **stack_a, t_stack **stack_b)
 		return ;
 	if (!(*stack_a) || !(*stack_a)->next || !(*stack_b) || !(*stack_b)->next)
 		return ;
-	swap_a(stack_a);
-	swap_b(stack_b);
+	swap_a(stack_a, 0);
+	swap_b(stack_b, 0);
 	ft_printf("ss\n");
 }

@@ -22,25 +22,27 @@ int     stack_in_rorder(t_stack *stack_a)
         return(1);
 }
 
-int	valid_push(t_stack *stack_a, t_stack *stack_b)
-{
-	if(stack_a->val > stack_b->val)
-		return(1);
-	return(0);
-}
-
-void	update_index(t_stack *stack)
+void	update_index(t_stack **stack_a)
 {
 	int	i;
 	t_stack *temp;
 
 	i = 1;
-	temp = stack;
-	while(stack)
+	temp = (*stack_a);
+	while(temp)
 	{
-		stack->index = i;
-		stack = stack->next;
+		temp->index = i;
+		temp = temp->next;
 		i++;
 	}
-	temp->lsize = i - 1;
+	(*stack_a)->lsize = i - 1;
+}
+
+void	fill_struct_info(t_stack **stack_a, t_stack **stack_b)
+{
+	ft_printf("here\n");
+	update_index(stack_a);
+	update_index(stack_b);
+	printf("a: %d	b: %d\n", (*stack_a)->lsize, (*stack_b)->lsize);
+	//count_moves(stack_a, stack_b);
 }

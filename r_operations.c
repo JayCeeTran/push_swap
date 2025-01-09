@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	rotate_a(t_stack **stack)
+void	rotate_a(t_stack **stack, int print)
 {
 	t_stack *first;
 	t_stack *second;
@@ -16,10 +16,12 @@ void	rotate_a(t_stack **stack)
 	second->next = first;
 	first->prev = second;
 	first->next = NULL;
+	if(print)
+		ft_printf("ra\n");
 	
 }
 
-void	rotate_b(t_stack **stack)
+void	rotate_b(t_stack **stack, int print)
 {
 	t_stack *first;
 	t_stack *second;
@@ -35,6 +37,8 @@ void	rotate_b(t_stack **stack)
 	second->next = first;
 	first->prev = second;
 	first->next = NULL;
+	if(print)
+		ft_printf("rb\n");
 	
 }
 
@@ -44,6 +48,7 @@ void	rotate_rr(t_stack **stack_a, t_stack **stack_b)
         return ;
 	if (!(*stack_a)->next || !(*stack_b)->next)
 		return ;
-	rotate_a(stack_a);
-	rotate_b(stack_b);
+	rotate_a(stack_a, 0);
+	rotate_b(stack_b, 0);
+	ft_printf("rr\n");
 }

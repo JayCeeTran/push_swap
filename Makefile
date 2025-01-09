@@ -64,6 +64,10 @@ SRCS =	exit_functs.c \
 	r_operations.c \
 	s_operations.c \
 	stack_functions.c \
+	sort_stack.c \
+	sort_stack_size3.c \
+	count_moves.c \
+
 	
 OBJ = $(SRCS:.c=.o)
 LOBJ = $(LSRCS:.c=.o)
@@ -86,7 +90,7 @@ $(NAME): $(OBJ)
 libs: $(NAME) $(LIBFT) $(FPRINT)
 
 run: $(EXE) 
-	./a.out 1 2 3
+	./a.out 1 2 5 4 6
 
 $(EXE): $(NAME) $(LIBFT) $(FPRINT) test.c
 	cc $(CFLAGS) test.c $(NAME) $(FPRINT) $(LIBFT) -o $(EXE)
