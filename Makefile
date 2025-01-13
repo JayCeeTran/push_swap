@@ -65,20 +65,24 @@ SRCS =	exit_functs.c \
 	s_operations.c \
 	stack_functions.c \
 	sort_stack.c \
-	sort_stack_size3.c \
 	count_moves.c \
 	moving_nodes.c \
+	sort_stack_size3.c \
 	sort_stack_size4.c \
-
+	sort_stack_size5.c \
+	max_to_head.c \
 	
 OBJ = $(SRCS:.c=.o)
 LOBJ = $(LSRCS:.c=.o)
 FTP_OBJ = $(FTP_SRCS:.c=.o)
 
-EXE = a.out
+EXE = push_swap
 
 %.o: %.c
 	cc $(CFLAGS) -c $< -o $@
+
+$(EXE): $(NAME) $(LIBFT) $(FPRINT)
+	cc $(CFLAGS) $(NAME) $(FPRINT) $(LIBFT) -o $(EXE)
 
 $(LIBFT): $(LOBJ)
 	ar -rcs $(LIBFT) $(LOBJ)
@@ -88,14 +92,6 @@ $(FPRINT): $(FTP_OBJ)
 
 $(NAME): $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
-
-libs: $(NAME) $(LIBFT) $(FPRINT)
-
-run: $(EXE) 
-	./a.out 10 12 13 4 2 6 9 1 43  5 743
-
-$(EXE): $(NAME) $(LIBFT) $(FPRINT) test.c
-	cc $(CFLAGS) test.c $(NAME) $(FPRINT) $(LIBFT) -o $(EXE)
 
 all: $(NAME)
 

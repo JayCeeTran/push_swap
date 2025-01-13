@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   s_operations.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 08:11:20 by jtran             #+#    #+#             */
+/*   Updated: 2025/01/13 08:11:24 by jtran            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	swap_a(t_stack **stack, int print)
 {
-	t_stack *first;
-	t_stack *second;
+	t_stack	*first;
+	t_stack	*second;
 
 	if (!stack || !(*stack) || !(*stack)->next)
 		return ;
@@ -16,14 +28,14 @@ void	swap_a(t_stack **stack, int print)
 	second->next = first;
 	second->prev = NULL;
 	*stack = second;
-	if(print)
+	if (print)
 		ft_printf("sa\n");
 }
 
 void	swap_b(t_stack **stack, int print)
 {
-	t_stack *first;
-	t_stack *second;
+	t_stack	*first;
+	t_stack	*second;
 
 	if (!stack || !(*stack) || !(*stack)->next)
 		return ;
@@ -36,7 +48,7 @@ void	swap_b(t_stack **stack, int print)
 	second->next = first;
 	second->prev = NULL;
 	*stack = second;
-	if(print)
+	if (print)
 		ft_printf("sb\n");
 }
 

@@ -1,16 +1,26 @@
-#include "push_swap.c"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_utils2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 08:10:34 by jtran             #+#    #+#             */
+/*   Updated: 2025/01/13 08:52:38 by jtran            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "push_swap.h"
 
-int     ft_lstsizei_ps(t_stack *lst)
+int	ft_lstsizei_ps(t_stack *lst)
 {
-        int     i;
+	int	i;
 
-        i = 0;
-        while (lst)
-        {
-                i++;
-                lst = lst->next;
-        }
-        return (i);
+	i = 0;
+	while (lst)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
 }
-

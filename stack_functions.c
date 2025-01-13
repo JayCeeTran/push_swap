@@ -1,37 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_functions.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 08:11:45 by jtran             #+#    #+#             */
+/*   Updated: 2025/01/13 08:11:47 by jtran            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	stack_in_order(t_stack *stack_a)
 {
-	while(stack_a && stack_a->next)		
+	while (stack_a && stack_a->next)
 	{
-		if(stack_a->val > stack_a->next->val)
-			return(0);
+		if (stack_a->val > stack_a->next->val)
+			return (0);
 		stack_a = stack_a->next;
 	}
-	return(1);
+	return (1);
 }
 
-int     stack_in_rorder(t_stack *stack_a)
+int	stack_in_rorder(t_stack *stack_a)
 {
-        while(stack_a && stack_a->next)
-        {
-                if(stack_a->val < stack_a->next->val)
-                        return(0);
-                stack_a = stack_a->next;
-        }
-        return(1);
+	while (stack_a && stack_a->next)
+	{
+		if (stack_a->val < stack_a->next->val)
+			return (0);
+		stack_a = stack_a->next;
+	}
+	return (1);
 }
 
 void	update_index(t_stack **stack_a)
 {
-	int	i;
-	t_stack *temp;
-	
-	if(stack_a && (*stack_a))
-	{	
+	int		i;
+	t_stack	*temp;
+
+	if (stack_a && (*stack_a))
+	{
 		i = 1;
 		temp = (*stack_a);
-		while(temp)
+		while (temp)
 		{
 			temp->index = i;
 			temp = temp->next;
@@ -43,14 +55,14 @@ void	update_index(t_stack **stack_a)
 
 void	max_val(t_stack **stack_a)
 {
-	int max_val;
-	t_stack *temp;
+	int		max_val;
+	t_stack	*temp;
 
 	temp = (*stack_a);
 	max_val = (*stack_a)->val;
-	while(temp)
+	while (temp)
 	{
-		if(temp->val > max_val)
+		if (temp->val > max_val)
 			max_val = temp->val;
 		temp = temp->next;
 	}
@@ -59,14 +71,14 @@ void	max_val(t_stack **stack_a)
 
 void	min_val(t_stack **stack_b)
 {
-	int	min;
-	t_stack *temp;
+	int		min;
+	t_stack	*temp;
 
 	temp = (*stack_b);
 	min = (*stack_b)->val;
-	while(temp)
+	while (temp)
 	{
-		if(temp->val < min)
+		if (temp->val < min)
 			min = temp->val;
 		temp = temp->next;
 	}

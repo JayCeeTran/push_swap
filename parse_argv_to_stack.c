@@ -1,22 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_argv_to_stack.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 08:10:50 by jtran             #+#    #+#             */
+/*   Updated: 2025/01/13 08:11:05 by jtran            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	validate_add_free(t_stack **stack, char **temp);
-int	validate_argument(char *temp);
-int	check_duplicates(t_stack *stack, t_stack *node);
-
+int		validate_argument(char *temp);
+int		check_duplicates(t_stack *stack, t_stack *node);
 
 t_stack	*parse_argv_to_stack(int argc, char **argv)
 {
-	t_stack *stack;
-	int	i;
+	t_stack	*stack;
+	int		i;
 	char	**temp;
 
 	stack = NULL;
 	i = 0;
-	while(argc-- > 0)
+	while (argc-- > 0)
 	{
 		temp = ft_split(argv[i++], ' ');
-		if(!temp)
+		if (!temp)
 			malloc_failed(stack, temp);
 		validate_add_free(&stack, temp);
 	}
@@ -25,8 +36,8 @@ t_stack	*parse_argv_to_stack(int argc, char **argv)
 
 void	validate_add_free(t_stack **stack, char **temp)
 {
-	int	i;
-	t_stack *newnode;
+	int		i;
+	t_stack	*newnode;
 
 	i = 0;
 	while (temp[i])
@@ -36,7 +47,7 @@ void	validate_add_free(t_stack **stack, char **temp)
 		newnode = ft_lstnew_ps(ft_atoi(temp[i]));
 		if (!newnode)
 			malloc_failed(*stack, temp);
-		if(!check_duplicates(*stack, newnode))
+		if (!check_duplicates(*stack, newnode))
 		{
 			free(newnode);
 			invalid_argument(*stack, temp);
@@ -49,14 +60,14 @@ void	validate_add_free(t_stack **stack, char **temp)
 
 int	validate_argument(char *temp)
 {
-	int i;
-	long long val;
-	int sign;
+	int			i;
+	long long	val;
+	int			sign;
 
 	val = 0;
 	i = 0;
 	sign = 1;
-	if(temp[i] == '-')
+	if (temp[i] == '-')
 	{
 		sign = -1;
 		i++;

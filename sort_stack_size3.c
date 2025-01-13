@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_stack_size3.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 08:11:29 by jtran             #+#    #+#             */
+/*   Updated: 2025/01/13 08:11:33 by jtran            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sortcase1(t_stack **stack_a)
@@ -17,12 +29,12 @@ void	sortcase3(t_stack **stack_a)
 	rotate_a(stack_a, 1);
 }
 
-void sortcase4(t_stack **stack_a)
+void	sortcase4(t_stack **stack_a)
 {
 	swap_a(stack_a, 1);
 }
 
-void sortcase5(t_stack **stack_a)
+void	sortcase5(t_stack **stack_a)
 {
 	rr_a(stack_a, 1);
 }

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   p_and_rr_operations.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 08:10:41 by jtran             #+#    #+#             */
+/*   Updated: 2025/01/13 08:10:43 by jtran            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	push_a(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *b_first;
-	
+	t_stack	*b_first;
+
 	if (!stack_b || !(*stack_b))
 		return ;
 	b_first = (*stack_b);
@@ -20,8 +32,8 @@ void	push_a(t_stack **stack_a, t_stack **stack_b)
 
 void	push_b(t_stack **stack_b, t_stack **stack_a)
 {
-	t_stack *a_first;
-	
+	t_stack	*a_first;
+
 	if (!stack_a || !(*stack_a))
 		return ;
 	a_first = (*stack_a);
@@ -38,35 +50,35 @@ void	push_b(t_stack **stack_b, t_stack **stack_a)
 
 void	rr_a(t_stack **stack, int print)
 {
-	t_stack *first;
-	
+	t_stack	*first;
+
 	if (!stack || !(*stack) || !(*stack)->next)
 		return ;
 	first = (*stack);
 	while ((*stack)->next)
 		(*stack) = (*stack)->next;
-	(*stack)->prev->next  = NULL;
+	(*stack)->prev->next = NULL;
 	(*stack)->next = first;
 	(*stack)->prev = NULL;
 	first->prev = (*stack);
-	if(print)
+	if (print)
 		ft_printf("rra\n");
 }
 
 void	rr_b(t_stack **stack, int print)
 {
-	t_stack *first;
-	
+	t_stack	*first;
+
 	if (!stack || !(*stack) || !(*stack)->next)
 		return ;
 	first = (*stack);
 	while ((*stack)->next)
 		(*stack) = (*stack)->next;
-	(*stack)->prev->next  = NULL;
+	(*stack)->prev->next = NULL;
 	(*stack)->next = first;
 	(*stack)->prev = NULL;
 	first->prev = (*stack);
-	if(print)
+	if (print)
 		ft_printf("rrb\n");
 }
 
