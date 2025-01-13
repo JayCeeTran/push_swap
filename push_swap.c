@@ -13,6 +13,8 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	stack_a = parse_argv_to_stack(argc - 1, argv + 1);
 
+	(void)stack_b;
+	(void)stack_a;
 	return(0);
 
 }

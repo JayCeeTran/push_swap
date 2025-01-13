@@ -6,8 +6,18 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+typedef struct s_info{
+	int target;
+	int asize;
+	int ctarget;
+	int cmove;
+	int moving_node;
+}	t_info;
+
 typedef struct s_stack{
 	int val;
+	int max;
+	int min;
 	int moves;
 	int index;
 	int lsize;
@@ -42,12 +52,18 @@ void	rotate_rr(t_stack **stack_a, t_stack **stack_b);
 int	stack_in_order(t_stack *stack_a);
 int	stack_in_rorder(t_stack *stack_a);
 void	update_index(t_stack **stack);
+void	max_val(t_stack **stack_a);
+void    min_val(t_stack **stack_b);
+void	min_to_head(t_stack **stack_a);
+void    max_to_head(t_stack **stack_b);
 
 int	find_position(t_stack *stack_a, t_stack *stack_b);
-int	way_of_rotation(int index, int lsize);
+int	rotation(int index, int lsize);
 int	possible_double_rotation(t_stack *stack_a, t_stack *stack_b);
 
 int	sort_stack(t_stack **stack_a, t_stack **stack_b);
+void	sort_stack_size5(t_stack **stack_a, t_stack **stack_b);
+void	sort_stack_size4(t_stack **stack_a, t_stack **stack_b);
 void	sort_stack_size3(t_stack **stack_a);
 void	sortcase1(t_stack **stack_a);
 void	sortcase2(t_stack **stack_a);
@@ -56,8 +72,19 @@ void	sortcase4(t_stack **stack_a);
 void	sortcase5(t_stack **stack_a);
 
 void	main_sorting(t_stack **stack_a, t_stack **stack_b);
-void	count_moves(t_stack **stack_a, t_stack **stack_b);
-void	fill_struct_info(t_stack **stack_a, t_stack **stack_b);
-//void	push_2nodes(t_stack **stack_a, t_stack **stack_b);
+void	find_target_move_node(t_stack **stack_a, t_stack **stack_b);
+void	move_node(t_stack **stack_a, t_stack ** stack_b, t_info data);
+void	push_2nodes(t_stack **stack_a, t_stack **stack_b);
+
+//MOVING NODE FUNCTIONS
+
+void    rotate_both_then_1(t_stack **stack_a, t_stack **stack_b, t_info data);
+void    rotate_a_rr_b(t_stack **stack_a, t_stack **stack_b, t_info data);
+void	rr_a_rotate_b(t_stack **stack_a, t_stack **stack_b, t_info data);
+void    rotate_b_only(t_stack **stack_b, t_info data);
+void    rrotate_push(t_stack **stack_a, t_stack **stack_b);
+
+
+void	print_stack(t_stack *stack_a);
 
 #endif

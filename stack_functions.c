@@ -26,23 +26,49 @@ void	update_index(t_stack **stack_a)
 {
 	int	i;
 	t_stack *temp;
-
-	i = 1;
-	temp = (*stack_a);
-	while(temp)
-	{
-		temp->index = i;
-		temp = temp->next;
-		i++;
+	
+	if(stack_a && (*stack_a))
+	{	
+		i = 1;
+		temp = (*stack_a);
+		while(temp)
+		{
+			temp->index = i;
+			temp = temp->next;
+			i++;
+		}
+		(*stack_a)->lsize = i - 1;
 	}
-	(*stack_a)->lsize = i - 1;
 }
 
-void	fill_struct_info(t_stack **stack_a, t_stack **stack_b)
+void	max_val(t_stack **stack_a)
 {
-	ft_printf("here\n");
-	update_index(stack_a);
-	update_index(stack_b);
-	printf("a: %d	b: %d\n", (*stack_a)->lsize, (*stack_b)->lsize);
-	//count_moves(stack_a, stack_b);
+	int max_val;
+	t_stack *temp;
+
+	temp = (*stack_a);
+	max_val = (*stack_a)->val;
+	while(temp)
+	{
+		if(temp->val > max_val)
+			max_val = temp->val;
+		temp = temp->next;
+	}
+	(*stack_a)->max = max_val;
+}
+
+void	min_val(t_stack **stack_b)
+{
+	int	min;
+	t_stack *temp;
+
+	temp = (*stack_b);
+	min = (*stack_b)->val;
+	while(temp)
+	{
+		if(temp->val < min)
+			min = temp->val;
+		temp = temp->next;
+	}
+	(*stack_b)->min = min;
 }

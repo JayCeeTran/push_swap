@@ -51,9 +51,16 @@ int	validate_argument(char *temp)
 {
 	int i;
 	long long val;
+	int sign;
 
 	val = 0;
 	i = 0;
+	sign = 1;
+	if(temp[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
 	while (temp[i])
 	{
 		if (temp[i] < '0' || temp[i] > '9')
@@ -61,6 +68,7 @@ int	validate_argument(char *temp)
 		val = val * 10 + (temp[i] - '0');
 		i++;
 	}
+	val = sign * val;
 	if (val > 2147483647 || val < -2147483648)
 		return (0);
 	return (1);

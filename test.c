@@ -8,10 +8,8 @@ int     main(int argc, char **argv)
         t_stack *node;
         t_stack *stack_b;
 
-	stack_b = NULL;
-        int i;
-
-        i = 0;
+		stack_b = NULL;
+        
         if (argc < 2)
                 return (0);
         stack_a = parse_argv_to_stack(argc - 1, argv + 1);
@@ -22,17 +20,20 @@ int     main(int argc, char **argv)
                 stack_a = stack_a->next;
                 
         }
-	update_index(&node);
+		update_index(&node);
         printf("SEPERATE\n");
-	sort_stack(&node, &stack_b);
+		sort_stack(&node, &stack_b);
 
         while(node)
         {
-                //printf("prev:%p         node: %p        index: %d\n", node->prev, node, node->index);
                 printf("stack_a:%d      index: %d\n", node->val, node->index);
-                
                 node = node->next;
-	}
+		}
+		while(stack_b)
+		{
+			printf("stack_b:%d		index: %d\n", stack_b->val, stack_b->index);
+			stack_b = stack_b->next;
+		}
 	return(0);
 
 }

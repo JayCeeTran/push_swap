@@ -67,6 +67,8 @@ SRCS =	exit_functs.c \
 	sort_stack.c \
 	sort_stack_size3.c \
 	count_moves.c \
+	moving_nodes.c \
+	sort_stack_size4.c \
 
 	
 OBJ = $(SRCS:.c=.o)
@@ -90,7 +92,7 @@ $(NAME): $(OBJ)
 libs: $(NAME) $(LIBFT) $(FPRINT)
 
 run: $(EXE) 
-	./a.out 1 2 5 4 6
+	./a.out 10 12 13 4 2 6 9 1 43  5 743
 
 $(EXE): $(NAME) $(LIBFT) $(FPRINT) test.c
 	cc $(CFLAGS) test.c $(NAME) $(FPRINT) $(LIBFT) -o $(EXE)
@@ -104,4 +106,3 @@ fclean: clean
 	rm -f $(NAME) $(LIBFT) $(FPRINT)
 
 re: fclean all
-
