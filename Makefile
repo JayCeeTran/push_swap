@@ -67,9 +67,10 @@ SRCS =	exit_functs.c \
 	sort_stack.c \
 	count_moves.c \
 	moving_nodes.c \
+	moving_nodes2.c \
 	sort_stack_size3.c \
 	sort_stack_size4.c \
-	sort_stack_size5.c \
+	sort_stack_size5_plus.c \
 	max_to_head.c \
 	
 OBJ = $(SRCS:.c=.o)
@@ -81,8 +82,11 @@ EXE = push_swap
 %.o: %.c
 	cc $(CFLAGS) -c $< -o $@
 
-$(EXE): $(NAME) $(LIBFT) $(FPRINT)
-	cc $(CFLAGS) $(NAME) $(FPRINT) $(LIBFT) -o $(EXE)
+run: $(EXE)
+	./push_swap 3 1 7 2 6
+
+$(EXE): $(NAME) $(LIBFT) $(FPRINT) push_swap.c
+	cc $(CFLAGS) push_swap.c $(NAME) $(FPRINT) $(LIBFT) -o $(EXE)
 
 $(LIBFT): $(LOBJ)
 	ar -rcs $(LIBFT) $(LOBJ)

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	rotate_help(t_stack **stack_a, t_stack **stack_b, t_info data, int size)
+void	rotate_help2(t_stack **stack_a, t_stack **stack_b, t_info data, int size)
 {
 	while (data.moving_node <= data.asize && data.ctarget <= size)
 	{
@@ -21,12 +21,12 @@ void	rotate_help(t_stack **stack_a, t_stack **stack_b, t_info data, int size)
 		data.moving_node++;
 	}
 	while (data.ctarget++ <= size)
-		rr_b(stack_b, 1);
+		rr_a(stack_b, 1);
 	while (data.moving_node++ <= data.asize)
-		rr_a(stack_a, 1);
+		rr_b(stack_a, 1);
 }
 
-void	rotate_both_then_1(t_stack **stack_a, t_stack **stack_b, t_info data)
+void	rotate_both_then_12(t_stack **stack_a, t_stack **stack_b, t_info data)
 {
 	int	size;
 
@@ -40,43 +40,43 @@ void	rotate_both_then_1(t_stack **stack_a, t_stack **stack_b, t_info data)
 			data.moving_node--;
 		}
 		while (data.ctarget-- > 1)
-			rotate_b(stack_b, 1);
+			rotate_a(stack_b, 1);
 		while (data.moving_node-- > 1)
-			rotate_a(stack_a, 1);
+			rotate_b(stack_a, 1);
 	}
 	else if (rotation(data.ctarget, size) == -1)
-		rotate_help(stack_a, stack_b, data, size);
+		rotate_help2(stack_a, stack_b, data, size);
 }
 
-void	rotate_a_rr_b(t_stack **stack_a, t_stack **stack_b, t_info data)
+void	rotate_a_rr_b2(t_stack **stack_a, t_stack **stack_b, t_info data)
 {
 	int	size;
 
 	size = (*stack_b)->lsize;
 	while (data.moving_node-- > 1)
-		rotate_a(stack_a, 1);
+		rotate_b(stack_a, 1);
 	while (data.ctarget <= size && rotation(data.ctarget, size) == -1)
 	{
 		data.ctarget++;
-		rr_b(stack_b, 1);
+		rr_a(stack_b, 1);
 	}
 }
 
-void	rr_a_rotate_b(t_stack **stack_a, t_stack **stack_b, t_info data)
+void	rr_a_rotate_b2(t_stack **stack_a, t_stack **stack_b, t_info data)
 {	
 	int size;
 
 	size = (*stack_b)->lsize;
 	while (data.moving_node++ <= data.asize)
-		rr_a(stack_a, 1);
+		rr_b(stack_a, 1);
 	while (data.ctarget > 1 && rotation(data.ctarget, size) == 1)
 	{
 		data.ctarget--;
-		rotate_b(stack_b, 1);
+		rotate_a(stack_b, 1);
 	}
 }
 
-void	rotate_b_only(t_stack **stack_b, t_info data)
+void	rotate_b_only2(t_stack **stack_b, t_info data)
 {
 	int	size;
 
@@ -84,13 +84,13 @@ void	rotate_b_only(t_stack **stack_b, t_info data)
 	if (rotation(data.ctarget, size) == 1)
 	{
 		while (data.ctarget-- > 1)
-			rotate_b(stack_b, 1);
+			rotate_a(stack_b, 1);
 	}
 	else if (rotation(data.ctarget, size) == -1)
 	{
 		while (data.ctarget++ <= size)
 		{
-			rr_b(stack_b, 1);
+			rr_a(stack_b, 1);
 		}
 	}
 }

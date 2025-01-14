@@ -75,6 +75,8 @@ int					find_position(t_stack *stack_a, t_stack *stack_b);
 int					rotation(int index, int lsize);
 int					possible_double_rotation(t_stack *stack_a,
 						t_stack *stack_b);
+int					moves_arithmetic(int index, int asize, int target, int bsize);
+int					find_target(t_stack *stack_a, t_stack *stack_b);
 
 int					sort_stack(t_stack **stack_a, t_stack **stack_b);
 void				sort_stack_size5(t_stack **stack_a, t_stack **stack_b);
@@ -91,6 +93,7 @@ void				find_target_move_node(t_stack **stack_a, t_stack **stack_b);
 void				move_node(t_stack **stack_a, t_stack **stack_b,
 						t_info data);
 void				push_2nodes(t_stack **stack_a, t_stack **stack_b);
+void				move_b_to_a(t_stack **stack_a, t_stack **stack_b);
 
 // MOVING NODE FUNCTIONS
 
@@ -102,6 +105,19 @@ void				rr_a_rotate_b(t_stack **stack_a, t_stack **stack_b,
 						t_info data);
 void				rotate_b_only(t_stack **stack_b, t_info data);
 void				rrotate_push(t_stack **stack_a, t_stack **stack_b);
+
+// MOVING NODE 2
+
+void				rotate_both_then_12(t_stack **stack_a, t_stack **stack_b,
+						t_info data);
+void				rotate_a_rr_b2(t_stack **stack_a, t_stack **stack_b,
+						t_info data);
+void				rr_a_rotate_b2(t_stack **stack_a, t_stack **stack_b,
+						t_info data);
+void				rotate_b_only2(t_stack **stack_b, t_info data);
+void				rrotate_push2(t_stack **stack_a, t_stack **stack_b);
+
+
 
 void				print_stack(t_stack *stack_a);
 

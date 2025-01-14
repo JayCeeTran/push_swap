@@ -15,7 +15,7 @@
 
 int	rotation(int index, int lsize)
 {
-	if (index == 1)
+	if (index == 1 || index > lsize)
 		return (0);
 	if ((lsize + 1) / 2 >= index)
 		return (1);
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_a = parse_argv_to_stack(argc - 1, argv + 1);
 	sort_stack(&stack_a, &stack_b);
-	print_stack(stack_a);
+	//print_stack(stack_a);
 	ft_lstclear_ps(&stack_a);
 	return (0);
 }

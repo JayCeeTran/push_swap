@@ -12,50 +12,29 @@
 
 #include "push_swap.h"
 
-void	push_first(t_stack **stack_a, t_stack **stack_b)
-{
-	if ((*stack_b)->val < (*stack_a)->val)
-		push_a(stack_a, stack_b);
-	else if ((*stack_b)->val > (*stack_a)->val
-		&& (*stack_b)->val < (*stack_a)->next->val)
-	{
-		rotate_a(stack_a, 1);
-		push_a(stack_a, stack_b);
-	}
-	else if ((*stack_b)->val > (*stack_a)->next->val
-		&& (*stack_b)->val < (*stack_a)->next->next->val)
-	{
-		rr_a(stack_a, 1);
-		push_a(stack_a, stack_b);
-	}
-	else if ((*stack_b)->val > (*stack_a)->next->next->val)
-		push_a(stack_a, stack_b);
-}
-
-int	find_target(t_stack **stack_a, t_stack **stack_b)
+int	find_target(t_stack *stack_a, t_stack *stack_b)
 {
 	int		max;
 	int		min;
 	t_stack	*temp;
 
-	update_index(stack_a);
-	max_val(stack_a);
-	min_val(stack_a);
-	max = (*stack_a)->max;
-	min = (*stack_a)->min;
-	temp = (*stack_a);
-	while (temp)
+	update_index(&stack_b);
+	max = stack_b->max;
+	min = stack_b->min;
+	temp = stack_b;
+	while (temp && temp->next)
 	{
-		if ((*stack_b)->val < min && min == temp->val)
+		if (stack_a->val < min && min == temp->val)
 			return (temp->index);
-		else if (temp->next && (*stack_b)->val > temp->val
-			&& (*stack_b)->val < temp->next->val)
+		else if (stack_a->val > temp->val && stack_a->val < temp->next->val)
 			return (temp->index + 1);
-		else if ((*stack_b)->val > max && max == temp->val)
+		else if (stack_a->val > max && max == temp->val)
 			return (temp->index + 1);
 		temp = temp->next;
 	}
-	return (temp->index + 1);
+	if (stack_a->val < min)
+		return(stack_b->lsize);
+	return (stack_b->lsize + 1);
 }
 
 void	min_to_head_helper(int index, int size, t_stack **stack_a)
@@ -95,28 +74,42 @@ void	min_to_head(t_stack **stack_a)
 	min_to_head_helper(index, size, stack_a);
 }
 
-void	sort_stack_size5(t_stack **stack_a, t_stack **stack_b)
+void    move_node2(t_stack **stack_b, t_stack **stack_a, t_info data)
 {
-	int	i;
-	int	size;
+    
+    if (rotation(data.moving_node, data.asize) == rotation(data.ctarget,
+            (*stack_a)->lsize))
+        rotate_both_then_12(stack_b, stack_a, data);
+    else if (rotation(data.moving_node, data.asize) == 1)
+        rotate_a_rr_b2(stack_b, stack_a, data);
+    else if (rotation(data.moving_node, data.asize) == -1)
+        rr_a_rotate_b2(stack_b, stack_a, data);
+    else if (rotation(data.moving_node, data.asize) == 0)
+        rotate_b_only2(stack_a, data);
 
-	push_2nodes(stack_a, stack_b);
-	sort_stack_size3(stack_a);
-	push_first(stack_a, stack_b);
-	i = find_target(stack_a, stack_b);
-	size = (*stack_a)->lsize;
-	if (rotation(i, size) == 1)
-	{
-		while (i-- > 1)
-			rotate_a(stack_a, 1);
-	}
-	else if (rotation(i, size) == -1)
-	{
-		while (i++ <= size)
-			rr_a(stack_a, 1);
-	}
-	push_a(stack_a, stack_b);
-	update_index(stack_a);
-	min_val(stack_a);
-	min_to_head(stack_a);
+}
+
+void    move_b_to_a(t_stack **stack_a, t_stack **stack_b)
+{
+    t_stack *temp;
+    t_info  data;
+
+    min_val(stack_a);
+    max_val(stack_a);
+    temp = (*stack_b);
+    data.cmove = 1000;
+    data.asize = ((*stack_b)->lsize);
+    while (temp)
+    {
+        data.target = find_target(temp, (*stack_a));
+        temp->moves = moves_arithmetic(temp->index, data.asize, data.target, (*stack_a)->lsize);
+        if (temp->moves < data.cmove)
+        {
+            data.ctarget = data.target;
+            data.cmove = temp->moves;
+            data.moving_node = temp->index;
+        }
+        temp = temp->next;
+    }
+    move_node2(stack_b, stack_a, data);
 }

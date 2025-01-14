@@ -23,8 +23,6 @@ int	sort_stack(t_stack **stack_a, t_stack **stack_b)
 		sort_stack_size3(stack_a);
 	else if ((*stack_a)->lsize == 4)
 		sort_stack_size4(stack_a, stack_b);
-	else if ((*stack_a)->lsize == 5)
-		sort_stack_size5(stack_a, stack_b);
 	else if (!stack_in_order((*stack_a)))
 		main_sorting(stack_a, stack_b);
 	return (1);
@@ -55,8 +53,6 @@ void	push_2nodes(t_stack **stack_a, t_stack **stack_b)
 {
 	push_b(stack_b, stack_a);
 	push_b(stack_b, stack_a);
-	if ((*stack_b)->val < (*stack_b)->next->val)
-		swap_b(stack_b, 1);
 	update_index(stack_b);
 	update_index(stack_a);
 }
@@ -67,17 +63,22 @@ void	main_sorting(t_stack **stack_a, t_stack **stack_b)
 	while ((stack_a && (*stack_a) && !stack_in_order((*stack_a))) || ((*stack_b)
 			&& stack_b))
 	{
-		if (!stack_a || !(*stack_a))
-		{
-			max_val(stack_b);
-			max_to_head(stack_b);
-			if (stack_in_rorder((*stack_b)))
-			{
-				while ((*stack_b))
-					push_b(stack_a, stack_b);
-			}
+		if ((*stack_a)->lsize == 3)
 			break ;
-		}
 		find_target_move_node(stack_a, stack_b);
+		push_b(stack_b, stack_a);
+		update_index(stack_a);
+		update_index(stack_b);
 	}
+	sort_stack_size3(stack_a);
+	update_index(stack_a);
+	while(stack_b && (*stack_b))
+	{
+		move_b_to_a(stack_a, stack_b);
+		push_a(stack_a, stack_b);	    
+		update_index(stack_a);
+		update_index(stack_b);
+	}
+	min_val(stack_a);
+	min_to_head(stack_a);
 }

@@ -42,7 +42,7 @@ int	find_position(t_stack *stack_a, t_stack *stack_b)
 void	moves_helper(int index, int asize, int *moves)
 {
 	if (rotation(index, asize) == 1)
-		(*moves) += index;
+		(*moves) += index - 1;
 	else if (rotation(index, asize) == -1)
 		(*moves) += asize - index + 1;
 }
@@ -59,16 +59,16 @@ int	moves_arithmetic(int index, int asize, int target, int bsize)
 		if (rotation(index, asize) == 1)
 		{
 			if (index >= target)
-				return (index + 1);
+				return (index);
 			else
-				return (target + 1);
+				return (target);
 		}
-		else
+		else if (rotation(index, asize) == -1)
 		{
 			if (asize - index > bsize - target)
-				return (bsize - target + 2);
-			else if (asize - index <= bsize - target)
 				return (asize - index + 2);
+			else if (asize - index <= bsize - target)
+				return (bsize - target + 2);
 		}
 	}
 	moves_helper(index, asize, &moves);
@@ -78,18 +78,22 @@ int	moves_arithmetic(int index, int asize, int target, int bsize)
 
 void	move_node(t_stack **stack_a, t_stack **stack_b, t_info data)
 {
+	//printf("moves:%d	asize:%d	node:%d	target:%d\n", data.cmove, data.asize, data.moving_node, data.ctarget);
 	if (rotation(data.moving_node, data.asize) == rotation(data.ctarget,
 			(*stack_b)->lsize))
 		rotate_both_then_1(stack_a, stack_b, data);
-	else if (rotation(data.ctarget,(*stack_b)->lsize) == 1)
+	else if (rotation(data.moving_node, data.asize) == 1)
 		rotate_a_rr_b(stack_a, stack_b, data);
-	else if (rotation(data.ctarget,(*stack_b)->lsize) == -1)
+	else if (rotation(data.moving_node, data.asize) == -1)
 		rr_a_rotate_b(stack_a, stack_b, data);
-	else if (rotation(data.ctarget,(*stack_b)->lsize) == 0)
+	else if (rotation(data.moving_node, data.asize) == 0)
 		rotate_b_only(stack_b, data);
+	/*printf("pushing: %d\n", (*stack_a)->val);
 	push_b(stack_b, stack_a);
+	//print_stack((*stack_b));
+	//print_stack((*stack_a));
 	update_index(stack_a);
-	update_index(stack_b);
+	update_index(stack_b);*/
 }
 
 void	find_target_move_node(t_stack **stack_a, t_stack **stack_b)
