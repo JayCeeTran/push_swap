@@ -6,72 +6,55 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:10:23 by jtran             #+#    #+#             */
-/*   Updated: 2025/01/13 08:10:24 by jtran            ###   ########.fr       */
+/*   Updated: 2025/01/15 07:41:53 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack  *ft_lstnew_ps(int content)
+t_stack	*ft_lstnew_ps(int content)
 {
-        t_stack  *newnode;
+	t_stack	*newnode;
 
-        newnode = malloc(sizeof(t_stack));
-        if (!newnode)
-                return (NULL);
-        newnode->val = content;
-        newnode->next = NULL;
-        newnode->prev = NULL;
-        return (newnode);
+	newnode = malloc(sizeof(t_stack));
+	if (!newnode)
+		return (NULL);
+	newnode->val = content;
+	newnode->next = NULL;
+	newnode->prev = NULL;
+	return (newnode);
 }
 
-void    ft_lstadd_back_ps(t_stack **lst, t_stack *new)
+void	ft_lstadd_back_ps(t_stack **lst, t_stack *new)
 {
-        t_stack  *current;
+	t_stack	*current;
 
-        current = *lst;
-        if (*lst == NULL)
-        {
-                *lst = new;
-        }
-        else
-        {
-                while (current->next)
-                {
-                        current = current->next;
-                }
-                current->next = new;
-        	new->prev = current;
-        }
+	current = *lst;
+	if (*lst == NULL)
+	{
+		*lst = new;
+	}
+	else
+	{
+		while (current->next)
+		{
+			current = current->next;
+		}
+		current->next = new;
+		new->prev = current;
+	}
 }
 
-void    ft_lstadd_front_ps(t_stack **lst, t_stack *new)
+void	ft_lstclear_ps(t_stack **lst)
 {
-        if (!new)
-                return ;
-        new->next = *lst;
-        *lst = new;
-}
+	t_stack	*temp;
 
-void    ft_lstclear_ps(t_stack **lst)
-{
-        t_stack  *temp;
-
-        if (!*lst || !lst)
-                return ;
-        while (*lst)
-        {
-                temp = *lst;
-                (*lst) = (*lst)->next;
-                free(temp);
-        }
-}
-
-t_stack  *ft_lstlast_ps(t_stack *lst)
-{
-        if (!lst)
-                return (NULL);
-        while (lst->next)
-                lst = lst->next;
-        return (lst);
+	if (!*lst || !lst)
+		return ;
+	while (*lst)
+	{
+		temp = *lst;
+		(*lst) = (*lst)->next;
+		free(temp);
+	}
 }

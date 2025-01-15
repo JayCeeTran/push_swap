@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_stack_size5.c                                 :+:      :+:    :+:   */
+/*   sort_stack_size5_plus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:10:02 by jtran             #+#    #+#             */
-/*   Updated: 2025/01/13 08:45:05 by jtran            ###   ########.fr       */
+/*   Updated: 2025/01/15 07:57:39 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	find_target(t_stack *stack_a, t_stack *stack_b)
 		temp = temp->next;
 	}
 	if (stack_a->val < min)
-		return(stack_b->lsize);
+		return (stack_b->lsize);
 	return (stack_b->lsize + 1);
 }
 
@@ -74,42 +74,41 @@ void	min_to_head(t_stack **stack_a)
 	min_to_head_helper(index, size, stack_a);
 }
 
-void    move_node2(t_stack **stack_b, t_stack **stack_a, t_info data)
+void	move_node2(t_stack **stack_b, t_stack **stack_a, t_info data)
 {
-    
-    if (rotation(data.moving_node, data.asize) == rotation(data.ctarget,
-            (*stack_a)->lsize))
-        rotate_both_then_12(stack_b, stack_a, data);
-    else if (rotation(data.moving_node, data.asize) == 1)
-        rotate_a_rr_b2(stack_b, stack_a, data);
-    else if (rotation(data.moving_node, data.asize) == -1)
-        rr_a_rotate_b2(stack_b, stack_a, data);
-    else if (rotation(data.moving_node, data.asize) == 0)
-        rotate_b_only2(stack_a, data);
-
+	if (rotation(data.moving_node, data.asize) == rotation(data.ctarget,
+			(*stack_a)->lsize))
+		rotate_both_then_12(stack_b, stack_a, data);
+	else if (rotation(data.moving_node, data.asize) == 1)
+		rotate_a_rr_b2(stack_b, stack_a, data);
+	else if (rotation(data.moving_node, data.asize) == -1)
+		rr_a_rotate_b2(stack_b, stack_a, data);
+	else if (rotation(data.moving_node, data.asize) == 0)
+		rotate_b_only2(stack_a, data);
 }
 
-void    move_b_to_a(t_stack **stack_a, t_stack **stack_b)
+void	move_stack_b_to_a(t_stack **stack_a, t_stack **stack_b)
 {
-    t_stack *temp;
-    t_info  data;
+	t_stack	*temp;
+	t_info	data;
 
-    min_val(stack_a);
-    max_val(stack_a);
-    temp = (*stack_b);
-    data.cmove = 1000;
-    data.asize = ((*stack_b)->lsize);
-    while (temp)
-    {
-        data.target = find_target(temp, (*stack_a));
-        temp->moves = moves_arithmetic(temp->index, data.asize, data.target, (*stack_a)->lsize);
-        if (temp->moves < data.cmove)
-        {
-            data.ctarget = data.target;
-            data.cmove = temp->moves;
-            data.moving_node = temp->index;
-        }
-        temp = temp->next;
-    }
-    move_node2(stack_b, stack_a, data);
+	min_val(stack_a);
+	max_val(stack_a);
+	temp = (*stack_b);
+	data.cmove = 1000;
+	data.asize = ((*stack_b)->lsize);
+	while (temp)
+	{
+		data.target = find_target(temp, (*stack_a));
+		temp->moves = moves_arithmetic(temp->index, data.asize, data.target,
+				(*stack_a)->lsize);
+		if (temp->moves < data.cmove)
+		{
+			data.ctarget = data.target;
+			data.cmove = temp->moves;
+			data.moving_node = temp->index;
+		}
+		temp = temp->next;
+	}
+	move_node2(stack_b, stack_a, data);
 }

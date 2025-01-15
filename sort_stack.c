@@ -6,7 +6,7 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:11:40 by jtran             #+#    #+#             */
-/*   Updated: 2025/01/13 08:11:42 by jtran            ###   ########.fr       */
+/*   Updated: 2025/01/15 08:27:40 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,31 +53,27 @@ void	push_2nodes(t_stack **stack_a, t_stack **stack_b)
 {
 	push_b(stack_b, stack_a);
 	push_b(stack_b, stack_a);
-	update_index(stack_b);
-	update_index(stack_a);
+	update_index_2(stack_a, stack_b);
 }
 
 void	main_sorting(t_stack **stack_a, t_stack **stack_b)
 {
 	push_2nodes(stack_a, stack_b);
-	while ((stack_a && (*stack_a) && !stack_in_order((*stack_a))) || ((*stack_b)
-			&& stack_b))
+	while ((stack_a && (*stack_a)) || ((*stack_b) && stack_b))
 	{
 		if ((*stack_a)->lsize == 3)
 			break ;
 		find_target_move_node(stack_a, stack_b);
 		push_b(stack_b, stack_a);
-		update_index(stack_a);
-		update_index(stack_b);
+		update_index_2(stack_a, stack_b);
 	}
 	sort_stack_size3(stack_a);
 	update_index(stack_a);
-	while(stack_b && (*stack_b))
+	while (stack_b && (*stack_b))
 	{
-		move_b_to_a(stack_a, stack_b);
-		push_a(stack_a, stack_b);	    
-		update_index(stack_a);
-		update_index(stack_b);
+		move_stack_b_to_a(stack_a, stack_b);
+		push_a(stack_a, stack_b);
+		update_index_2(stack_a, stack_b);
 	}
 	min_val(stack_a);
 	min_to_head(stack_a);

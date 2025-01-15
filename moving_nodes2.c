@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moving_nodes.c                                     :+:      :+:    :+:   */
+/*   moving_nodes2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:55:36 by jtran             #+#    #+#             */
-/*   Updated: 2025/01/13 11:12:01 by jtran            ###   ########.fr       */
+/*   Updated: 2025/01/15 07:42:10 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_help2(t_stack **stack_a, t_stack **stack_b, t_info data, int size)
+void	rotate_help2(t_stack **stack_a, t_stack **stack_b, t_info data,
+		int size)
 {
 	while (data.moving_node <= data.asize && data.ctarget <= size)
 	{
@@ -63,8 +64,8 @@ void	rotate_a_rr_b2(t_stack **stack_a, t_stack **stack_b, t_info data)
 }
 
 void	rr_a_rotate_b2(t_stack **stack_a, t_stack **stack_b, t_info data)
-{	
-	int size;
+{
+	int	size;
 
 	size = (*stack_b)->lsize;
 	while (data.moving_node++ <= data.asize)

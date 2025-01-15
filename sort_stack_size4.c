@@ -6,7 +6,7 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:10:02 by jtran             #+#    #+#             */
-/*   Updated: 2025/01/13 08:46:50 by jtran            ###   ########.fr       */
+/*   Updated: 2025/01/15 08:04:05 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,10 @@ void	sort_stack_size4(t_stack **stack_a, t_stack **stack_b)
 		push_a(stack_a, stack_b);
 		rotate_a(stack_a, 1);
 	}
+}
+
+void	update_index_2(t_stack **stack_a, t_stack **stack_b)
+{
+	update_index(stack_a);
+	update_index(stack_b);
 }

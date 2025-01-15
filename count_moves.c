@@ -6,7 +6,7 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:09:54 by jtran             #+#    #+#             */
-/*   Updated: 2025/01/13 11:23:04 by jtran            ###   ########.fr       */
+/*   Updated: 2025/01/15 09:53:14 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	moves_arithmetic(int index, int asize, int target, int bsize)
 
 void	move_node(t_stack **stack_a, t_stack **stack_b, t_info data)
 {
-	//printf("moves:%d	asize:%d	node:%d	target:%d\n", data.cmove, data.asize, data.moving_node, data.ctarget);
 	if (rotation(data.moving_node, data.asize) == rotation(data.ctarget,
 			(*stack_b)->lsize))
 		rotate_both_then_1(stack_a, stack_b, data);
@@ -88,12 +87,6 @@ void	move_node(t_stack **stack_a, t_stack **stack_b, t_info data)
 		rr_a_rotate_b(stack_a, stack_b, data);
 	else if (rotation(data.moving_node, data.asize) == 0)
 		rotate_b_only(stack_b, data);
-	/*printf("pushing: %d\n", (*stack_a)->val);
-	push_b(stack_b, stack_a);
-	//print_stack((*stack_b));
-	//print_stack((*stack_a));
-	update_index(stack_a);
-	update_index(stack_b);*/
 }
 
 void	find_target_move_node(t_stack **stack_a, t_stack **stack_b)
@@ -104,7 +97,7 @@ void	find_target_move_node(t_stack **stack_a, t_stack **stack_b)
 	min_val(stack_b);
 	max_val(stack_b);
 	temp = (*stack_a);
-	data.cmove = 1000;
+	data.cmove = 5000;
 	data.asize = ((*stack_a)->lsize);
 	while (temp)
 	{

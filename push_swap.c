@@ -6,12 +6,11 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:10:57 by jtran             #+#    #+#             */
-/*   Updated: 2025/01/13 11:03:17 by jtran            ###   ########.fr       */
+/*   Updated: 2025/01/15 09:55:17 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	rotation(int index, int lsize)
 {
@@ -33,8 +32,9 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	stack_a = NULL;
 	stack_a = parse_argv_to_stack(argc - 1, argv + 1);
+	if (!stack_a)
+		empty_stack();
 	sort_stack(&stack_a, &stack_b);
-	//print_stack(stack_a);
 	ft_lstclear_ps(&stack_a);
 	return (0);
 }

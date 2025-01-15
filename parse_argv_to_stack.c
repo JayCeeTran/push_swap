@@ -6,7 +6,7 @@
 /*   By: jtran <jtran@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:10:50 by jtran             #+#    #+#             */
-/*   Updated: 2025/01/13 08:11:05 by jtran            ###   ########.fr       */
+/*   Updated: 2025/01/15 09:51:13 by jtran            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	validate_argument(char *temp)
 	sign = 1;
 	if (temp[i] == '-')
 	{
+		if (temp[i + 1] == '\0' || temp[i + 1] < '0' || temp[i + 1] > '9')
+			return (0);
 		sign = -1;
 		i++;
 	}
